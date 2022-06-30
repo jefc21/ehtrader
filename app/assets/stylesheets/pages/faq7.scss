@@ -1,0 +1,23 @@
+.faq .accordion-body{
+  color:white;
+  background: #198754;
+  
+}
+
+.faq .accordion-button{
+  color:white;
+  background: transparent;
+}
+
+.faq .accordion-item{
+  background: transparent;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.faq .accordion-button:not(.collapsed){
+  color: #000000;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.15rem #198754;
+}
