@@ -11,11 +11,6 @@
 	src: url('../fonts/Montserrat/Montserrat-SemiBold.ttf');
 }
 
-.inner input, textarea, select, button {
-	font-family: "Montserrat-Regular";
-	color: #fff;
-	font-size: 15px;
-}
 .inner p, h1, h2, h3, h4, h5, h6, ul {
 	color: #198754;
 	margin: 0;
@@ -106,6 +101,9 @@ a:hover {
 .inner textarea.form-control {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	background: transparent;
+  box-shadow: none;
+	color:white;
 }
 
 @media (max-width: 1199px) { 
@@ -202,3 +200,14 @@ a:hover {
 		}
 	}
 }
+
+.inner input.form-control, textarea.form-control{
+	font-family: "Montserrat-Regular";
+	color: #fff;
+	font-size: 15px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid white;
+}
+

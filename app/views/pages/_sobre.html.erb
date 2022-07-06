@@ -1,28 +1,73 @@
-<section class="how-it-works-sec" id="sobre" style="height: 100%">
+<section class="how-it-works-sec" id="sobre">
   <div class="container px-4 py-5 sobre" id="featured-3">
     <h2 class="pb-2 border-bottom">SOBRE</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
       <div class="feature col">
         <h2>O que é trader?</h2>
-        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <% @message1 = "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words." %>
+        <p><%= @message1 %></p>
         <div class="mb-3">
           <%= image_tag("sobre/img1.jpg", :alt => "", :width => "75%", :height => "75%") %>
         </div>
+        <!-- Button trigger modal -->
+        <button onclick='textModal("O que é trader?", "<%= @message1 %>")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+          saber mais
+        </button>
       </div>
       <div class="feature col">
         <h2>Como funciona?</h2>
-        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <% @message2 = "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words." %>
+        <p><%= @message2 %></p>
         <div class="mb-3">
           <%= image_tag("sobre/img2.jpg", :alt => "", :width => "75%", :height => "75%") %>
         </div>
+        <!-- Button trigger modal -->
+        <button onclick='textModal("Como funciona?","<%= @message2 %>")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+          saber mais
+        </button>
       </div>
       <div class="feature col">
         <h2>Quem somos?</h2>
-        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <% @message3 = "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words." %>
+        <p><%= @message3 %></p>
         <div class="mb-3">
           <%= image_tag("sobre/img3.jpg", :alt => "", :width => "75%", :height => "75%") %>
         </div>
+        <!-- Button trigger modal -->
+        <button onclick='textModal("Quem somos?","<%= @message3 %>")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+          saber mais
+        </button>
+      </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p id="textModal">This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
+
+  </div>
 </section>
+
+<script>
+  function textModal(title, text) {
+    document.getElementById("exampleModalScrollableTitle").innerText=title;
+    document.getElementById("textModal").innerText=text;
+  }
+</script>

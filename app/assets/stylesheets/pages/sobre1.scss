@@ -1,3 +1,13 @@
 .sobre .py-5{
   color: #f9fafb;
+};
+
+#sobre{
+  height: auto;
+}
+
+@media (min-width: 992px) {
+  #sobre{
+    height: -webkit-fill-available;
+  }
 }
