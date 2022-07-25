@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @portion.number %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @portion.value %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @portion.status %>
+</p>
+
+<p>
+  <strong>Proof:</strong>
+  <%= @portion.proof %>
+</p>
+
+<p>
+  <strong>Contract historic:</strong>
+  <%= @portion.contract_historic_id %>
+</p>
+
+<%= link_to 'Edit', edit_portion_path(@portion) %> |
+<%= link_to 'Back', portions_path %>

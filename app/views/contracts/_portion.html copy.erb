@@ -1,0 +1,33 @@
+<section class="how-it-works-sec" id="faq" style="height: 100%">
+  <div class="container px-4 py-5 sobre faq" id="featured-3">
+    <h2 class="pb-2 border-bottom">Contratos</h2>
+    <div class="accordion" id="accordionExample">
+
+      <% ContractHistoric.all.each do |contract| %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading<%= contract.id %>">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= contract.id %>" aria-expanded="true" aria-controls="collapse<%= contract.id %>">
+              Contrato <%= contract.open_date %>
+            </button>
+          </h2>
+          <div id="collapse<%= contract.id %>" class="accordion-collapse collapse show" aria-labelledby="heading<%= contract.id %>" data-bs-parent="#accordionExample">
+            <% Portion.all.each do |portion| %>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading<%= portion.id %>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= portion.id %>" aria-expanded="true" aria-controls="collapse<%= portion.id %>">
+                    Parcela # <%= portion.number %>
+                  </button>
+                </h2>
+                <div id="collapse<%= portion.id %>" class="accordion-collapse collapse show" aria-labelledby="heading<%= portion.id %>" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <%= image_tag("sobre/img1.jpg", :alt => "", :width => "25%", :height => "25%") %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

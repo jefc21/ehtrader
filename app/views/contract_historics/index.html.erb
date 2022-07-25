@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contract Historics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Num portion</th>
+      <th>Status</th>
+      <th>Open date</th>
+      <th>Contract</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contract_historics.each do |contract_historic| %>
+      <tr>
+        <td><%= contract_historic.value %></td>
+        <td><%= contract_historic.num_portion %></td>
+        <td><%= contract_historic.status %></td>
+        <td><%= contract_historic.open_date %></td>
+        <td><%= contract_historic.contract_id %></td>
+        <td><%= link_to 'Show', contract_historic %></td>
+        <td><%= link_to 'Edit', edit_contract_historic_path(contract_historic) %></td>
+        <td><%= link_to 'Destroy', contract_historic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contract Historic', new_contract_historic_path %>

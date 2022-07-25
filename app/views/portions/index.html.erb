@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Portions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Value</th>
+      <th>Status</th>
+      <th>Proof</th>
+      <th>Contract historic</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @portions.each do |portion| %>
+      <tr>
+        <td><%= portion.number %></td>
+        <td><%= portion.value %></td>
+        <td><%= portion.status %></td>
+        <td><%= portion.proof %></td>
+        <td><%= portion.contract_historic_id %></td>
+        <td><%= link_to 'Show', portion %></td>
+        <td><%= link_to 'Edit', edit_portion_path(portion) %></td>
+        <td><%= link_to 'Destroy', portion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Portion', new_portion_path %>

@@ -1,0 +1,24 @@
+<%= render 'pages/private_user/header' %>
+<p id="notice"><%= notice %></p>
+
+<section class="how-it-works-sec" id="index_user" style="height: 100%">
+  <div class="container">
+    <h2 style="text-align: -webkit-center; padding: 5% 5% 1% 5%;">
+      Seja Bem vindo(a) à EHTRADER
+      <hr style="border: 1px solid #f9fafb">
+      <p style="color: #f9fafb; font-size: medium;">Aqui Cuidamos Bem dos Seus Ivestimentos</p>
+    </h2>
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      </div>
+      <div class="carousel-inner" style="height: -webkit-fill-available;">
+        <div class="carousel-item active" style="display: flex; align-items: center; justify-content: center;">
+          <%= image_tag("rendimento_exemplo.jpeg", :alt => "", :class=> "d-inline-block align-text-top", 'aria-hidden' => "true", :preserveAspectRatio => "xMidYMid slice", :focusable => "false", :style => "height: -webkit-fill-available;") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--%= render 'portion' %-->

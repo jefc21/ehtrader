@@ -10,7 +10,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'bootstrap'
 import '../stylesheets/application.scss'
-
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import { Tooltip, Popover } from "bootstrap"
 
 document.addEventListener("turbolinks:load", () => {

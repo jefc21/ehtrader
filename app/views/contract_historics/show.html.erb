@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @contract_historic.value %>
+</p>
+
+<p>
+  <strong>Num portion:</strong>
+  <%= @contract_historic.num_portion %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @contract_historic.status %>
+</p>
+
+<p>
+  <strong>Open date:</strong>
+  <%= @contract_historic.open_date %>
+</p>
+
+<p>
+  <strong>Contract:</strong>
+  <%= @contract_historic.contract_id %>
+</p>
+
+<%= link_to 'Edit', edit_contract_historic_path(@contract_historic) %> |
+<%= link_to 'Back', contract_historics_path %>

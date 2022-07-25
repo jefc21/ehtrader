@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reference_date: 2022-07-22
+  income_doc: MyString
+
+two:
+  reference_date: 2022-07-22
+  income_doc: MyString
