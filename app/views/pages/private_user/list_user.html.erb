@@ -1,0 +1,110 @@
+<%= render 'pages/private_user/header2' %>
+<p id="notice"><%= notice %></p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script>
+  function textModal(entrada) {
+     return entrada;
+  }
+</script>
+<section class="how-it-works-sec" id="faq" style="height: -webkit-fill-available; margin-bottom: -4rem;">
+  <div class="container px-4 py-5 sobre faq" id="featured-3">
+    <h2 class="pb-2 border-bottom" style="color: #198754">Editar Dados do Usuario</h2>
+    <br>
+      <input class="form-control" id="myInput" type="text" placeholder="Procurar..">
+    <br>
+    <div class="accordion" id="accordionExample" style="max-height: 300px; overflow-y: auto;">
+      <table class="table table-hover table-dark" >
+
+        <thead style="position: sticky !important; top: 0 !important; z-index: 1;">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contrato</th>
+            <th scope="col">Versão do Contrato</th>
+            <th scope="col">Valor do Contrato</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          <% ContractHistoric.where(status:false).each_with_index do |contracthistoric, index| %>
+            <tr>
+              <th scope="row"><%= index%></th>
+              <td><%= contracthistoric.contract.user.email %></td>
+              <td><%= contracthistoric.contract.number %></td>
+              <td><%= contracthistoric.open_date %></td>
+              <td><%= contracthistoric.value %></td>
+              <td>  
+                <!-- Default dropright button -->
+                <div class="btn-group dropright">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+                  </button>
+                  <div class="dropdown-menu">
+                    <!-- Dropdown menu links -->
+                    <!--Button onclick='textModal("Rendimento <%#= @meses[income.reference_date.month-1]#%>/<%#= income.reference_date.year #%>","img_1.jpeg")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"> <i class="bi bi-eye-fill"></i> </button-->
+                    <a class="dropdown-item" ><button onclick= 'textModal(<%=@select%>,this.name)' id="<%= index %>" name="<%= contracthistoric.id %>" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Inserir extrato</button></a>
+                    <a class="dropdown-item"  href="/user/edit/<%=contracthistoric.id%>"><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Editar dados</button></a>
+                    <a class="dropdown-item"  href="#"><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Atualizar contrato</button></a>
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalScrollable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalScrollableTitle">Inserir Extrato</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            
+            <p>o valor do select é: <%= @select %></p>
+            
+            <!--div class="carousel-item active" style="display: flex; align-items: center; justify-content: center;">
+              <%#= image_tag("rendimento_exemplo", :alt => "", :class=> "d-inline-block align-text-top", 'aria-hidden' => "true", :preserveAspectRatio => "xMidYMid slice", :focusable => "false", :id => "img_income", :style => "height: -webkit-fill-available;") %>
+            </div-->
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function textModal(a,b) {
+    a=b
+    console.log(a);
+    console.log("<%= @select %>");
+    return "<%= @select %>";
+    //document.getElementById("exampleModalScrollableTitle").innerText=title;
+    //document.getElementById("img_income").src=text;
+  }
+
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+</script>

@@ -21,12 +21,29 @@ class ContractsController < ApplicationController
 
   # POST /contracts or /contracts.json
   def create
-    @contract = Contract.new(contract_params)
-
+    @user = User.new(email:params[:email], password: params[:password], password_confirmation: params[:password])
     respond_to do |format|
-      if @contract.save
-        format.html { redirect_to contract_url(@contract), notice: "Contract was successfully created." }
-        format.json { render :show, status: :created, location: @contract }
+      if @user.save
+        @investor = @user.build_user_role(role_id: Role.find_by(name:"Investor").id)
+        if @investor.save
+          @contract = @user.contract.build(contract_params)
+          if @contract.save
+            @contract_historic = @contract.contract_historic.build(value:params[:value], num_portion:params[:num_portion], status:true, open_date:params[:open_date])
+            if @contract_historic.save
+              (1..@contract_historic.num_portion).each do |i|
+                @portions=@contract_historic.portion.build(number:i, value:(@contract_historic.value/10), status:false, proof:nil)
+                if i == @contract_historic.num_portion
+                  if @portions.save
+                   format.html { redirect_to user_contract_new_path, notice: "Contract was successfully created." }
+                    #format.json { render :show, status: :created, location: @contract }
+                  end
+                elsif !@portions.save
+                  break
+                end
+              end
+            end
+          end
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @contract.errors, status: :unprocessable_entity }

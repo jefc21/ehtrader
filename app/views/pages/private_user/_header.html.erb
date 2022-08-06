@@ -16,15 +16,15 @@
             <label class="btn btn-outline-success my-2 my-sm-0" style="border: none;">Bem Vindo Eric</label>
             </div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+    <!--button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button-->
     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body">
+      <!--div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -46,19 +46,19 @@
             </ul>
           </li>
         </ul>
-      </div>
+      </div-->
     </div>
             <div class="navbar-nav me-auto mb-2 mb-lg-0">
-              <a href="#" class="btn btn-outline-success my-2 my-sm-0" style="border-radius: 10px;">Home</a>
+              <a href="/user/home" class="btn btn-outline-success my-2 my-sm-0" style="border-radius: 10px;">Home</a>
               <!--a href="#sobre" class="btn btn-outline-success my-2 my-sm-0" style="border-radius: 10px;">Contratos</a-->
-              <a href="#faq" class="btn btn-outline-success my-2 my-sm-0" style="border-radius: 10px;">Rendimentos</a>
+              <a href="/user/income" class="btn btn-outline-success my-2 my-sm-0" style="border-radius: 10px;">Rendimentos</a>
               <li class="nav-item dropdown">
-                <a class="dropdown-toggle btn btn-outline-success my-2 my-sm-0" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 10px;">
+                <a class="dropdown-toggle btn btn-outline-success my-2 my-sm-0" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 10px; width: -webkit-fill-available;">
                   Contratos
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <% Contract.all.each do |contract| %>
-                    <li><a class="dropdown-item" href="#"><%= contract.number%></a></li>
+                  <% current_user.contract.each do |contract| %>
+                    <li><a class="dropdown-item" href= <%= "/user/contract/#{contract.number}" %> ><%= contract.number%></a></li>
                   <% end %>
                 </ul>
               </li>

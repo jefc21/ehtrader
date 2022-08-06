@@ -1,0 +1,8 @@
+// Place all the styles related to the incomes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.form-floating select{
+  width: -webkit-fill-available;
+  margin: 1rem;
+  border-radius: 3px;
+}

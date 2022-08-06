@@ -1,0 +1,50 @@
+<%= render 'pages/private_user/header2' %>
+<p id="notice"><%= notice %></p>
+
+<section class="signin" style="margin-bottom: -5rem">
+  <div class="text-center">
+  <h2 class="pb-2 border-bottom h3 mb-1 fw-normal" style="padding: 2rem">Criar Contrato</h2>
+    <div calss="form-signin w-100 m-auto" style="max-width: 330px; padding: 15px; margin: auto; padding-top: 3rem;">
+
+        <%= form_for @contract, method: :post do |form1| %> 
+          <%= fields_for @user do |form| %>
+            <div class="form-floating">
+              <%= form.email_field :email, class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+              <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating">
+              <%= form.password_field :password, class:"form-control", id:"floatingPassword", placeholder:"senha" %>
+              <label for="floatingPassword">Senha</label>
+            </div>
+          <% end %>
+
+          <%= fields_for @contract_historic do |form| %>
+            <div class="form-floating">
+              <%= form.text_field :value, class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+              <label for="floatingInput">Valor do Contrato</label>
+            </div>
+            <div class="form-floating">
+              <%= form.text_field :num_portion, class:"form-control", id:"floatingPassword", placeholder:"senha" %>
+              <label for="floatingPassword">Quantidade de Parcelas</label>
+            </div>
+            <div class="form-floating">
+              <%= form.date_field :open_date, class:"form-control", id:"floatingPassword", placeholder:"data de abertura", style:"filter: contrast(0.0);"%>
+              <label for="floatingPassword" style="opacity: 1;">Data de Abertura</label>
+            </div>
+          <% end %>
+
+          <div class="form-floating">
+            <%= form1.text_field :number, class:"form-control", id:"floatingPassword", placeholder:"senha" %>
+            <label for="floatingPassword">Nº do Contrato</label>
+          </div>
+          <div class="form-floating" style="margin-bottom: 1rem; color: white;">
+            <%= form1.file_field :contract_doc, class: "form-control", type: "file" %>
+            <small>Anexar o Contrato - Formato permitido:PDF</small>
+          </div>
+
+          <button class=" w-100 btn-lg btn btn-outline-success my-2 my-sm-0" type="submit">Salvar</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+@role_investor = Role.create! :name => 'Investor', :description => 'Usuario Comum'
+@role_adm = Role.create! :name => 'Adm', :description => 'Adm do sistema'
+

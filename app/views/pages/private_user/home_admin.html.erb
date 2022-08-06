@@ -1,0 +1,80 @@
+<%= render 'pages/private_user/header2' %>
+<p id="notice"><%= notice %></p>
+
+<section class="how-it-works-sec" id="index_user" style="height: 100%">
+  <div class="container">
+
+    <div class="text-center">  
+      <div class="form-signin w-100 m-auto">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= image_tag("ED-LOGO-SOMBRA-TRADER.png", :alt => "", :width => "72", :height => "57", :class=> "mb-4") %>
+          <h1 class="h3 mb-3 fw-normal">sign in</h1> 
+
+          <div class="form-floating">
+            <%= f.email_field :email, class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <%= f.password_field :password, class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+            <label for="floatingPassword">Password</label>
+          </div>  
+          <% if devise_mapping.rememberable? %>
+            <div class="checkbox mb-3">
+              <label>
+                <%= f.check_box :remember_me %> Remember me
+              </label>
+            </div>
+          <% end %>
+          <button class=" w-100 btn-lg btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+          <!--p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p-->
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<%= form_with(model: portion) do |form| %>
+  <% if portion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(portion.errors.count, "error") %> prohibited this portion from being saved:</h2>
+
+      <ul>
+        <% portion.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :proof %>
+    <%= form.text_field :proof %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contract_historic_id %>
+    <%= form.text_field :contract_historic_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

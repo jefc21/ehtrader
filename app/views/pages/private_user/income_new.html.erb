@@ -1,0 +1,41 @@
+<%= render 'pages/private_user/header2' %>
+<p id="notice"><%= notice %></p>
+
+<section class="how-it-works-sec" id="index_user" style="height: 100%">
+  <div class="text-center">
+    <div calss="container">
+      <h2 class="pb-2 border-bottom h3 mb-1 fw-normal" style="padding: 2rem">Inserir Rendimento Mensal</h2>
+      <div class="form-signin w-100 m-auto" style="display: flex; justify-content: center; padding-top: 3rem">
+
+        <%= form_for @income do |form| %>
+
+          <% if @income.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@income.errors.count, "error") %> prohibited this income from being saved:</h2>
+              <ul>
+                <% @income.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-floating" style="display: flex; flex-direction: column-reverse;">
+            <%= form.date_select :reference_date, class:"form-control", id:"floatingInput", placeholder:"name@example.com", style:"width: -webkit-fill-available; margin: 1rem;" %>
+          </div>
+
+          <div class="mb-3" style="width: -webkit-fill-available; margin: 1rem;">
+            <!--input class="form-control" type="file" id="formFile"-->
+            <%= form.file_field :income_doc, class: "form-control", type: "file", accept: "image/png, image/jpeg, image/jpg"%>
+          </div>
+
+          <div class="actions">
+            <%= form.submit class:"btn btn-outline-success", style:"width: -webkit-fill-available; margin: 1rem;" ,value:"Salvar"%>
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>

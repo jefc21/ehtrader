@@ -5,8 +5,8 @@
   <div class="container px-4 py-5 sobre faq" id="featured-3">
     <h2 class="pb-2 border-bottom">Contratos</h2>
     <div class="accordion" id="accordionExample">
-
-      <% ContractHistoric.all.order(open_date: :desc).each do |contract| %>
+      <% byebug %>
+      <% @contract.contract_historic.all.order(open_date: :desc).each do |contract| %>
         <div class="accordion-item">
           <h2 class="accordion-header" id="heading<%= contract.id %>">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= contract.id %>" aria-expanded="true" aria-controls="collapse<%= contract.id %>">
@@ -31,8 +31,8 @@
                         <!--th scope="row">1</th-->
                         <td><%= portion.number%>ª</td>
                         <td>R$ <%= portion.value%></td>
-                        <td><%= portion.status ? "Pago" : "-" %></td>
-                        <td><button <%= portion.proof.nil? ? "disabled" : ( portion.proof.empty? ? "disabled" : "b") %> type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"  onclick='textModal("Contrato - <%= contract.open_date %> | Parcela - <%= portion.number%>/<%= contract.portion.all.count %> ","")'><i class="bi bi-eye-fill"></i></button> | <button <%= portion.proof.nil? ? "disabled" : ( portion.proof.empty? ? "disabled" : "b") %> type="button" class="btn btn-outline-success"><i class="bi bi-download"></i></button> </td>
+                        <td><%= portion.status ? "Pago" : "-" %></td><!--Portion.find_by(id:4)[:proof].present?-->
+                        <td><button <%= portion[:proof].present? ? "" : "disabled" %> type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"  onclick='textModal("Contrato - <%= contract.open_date %> | Parcela - <%= portion.number%>/<%= contract.portion.all.count %> ","")'><i class="bi bi-eye-fill"></i></button> | <button <%= portion[:proof].present? ? "" : "disabled" %> type="button" class="btn btn-outline-success"><i class="bi bi-download"></i></button> </td>
                       </tr>
                     <% end %>
                   </tbody>
