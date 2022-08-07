@@ -37,12 +37,12 @@ class PortionsController < ApplicationController
   # PATCH/PUT /portions/1 or /portions/1.json
   def update
     respond_to do |format|
-      if @portion.update(portion_params)
-        format.html { redirect_to portion_url(@portion), notice: "Portion was successfully updated." }
-        format.json { render :show, status: :ok, location: @portion }
+      if @portion.update(proof:params[:portion][:proof] , status:true)
+        format.html { redirect_to "/user/manager/#{@portion.contract_historic_id}", notice: "Portion was successfully updated." }
+        #format.json { render :show, status: :ok, location: @portion }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @portion.errors, status: :unprocessable_entity }
+        format.html { redirect_to "/user/manager/#{@portion.contract_historic_id}", notice: "Not successfully updated."}
+        #format.json { render json: @portion.errors, status: :unprocessable_entity }
       end
     end
   end

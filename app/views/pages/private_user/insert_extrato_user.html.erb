@@ -1,0 +1,27 @@
+<%= form_with(model: portion) do |form| %>
+  <% if portion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(portion.errors.count, "error") %> prohibited this portion from being saved:</h2>
+
+      <ul>
+        <% portion.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :proof %>
+    <%= form.text_field :proof %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

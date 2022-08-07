@@ -1,19 +1,19 @@
-<%= render 'pages/private_user/header' %>
+<%= render 'pages/private_user/header2' %>
 <p id="notice"><%= notice %></p>
 
 <section class="how-it-works-sec" id="faq" style="height: 100%">
   <div class="container px-4 py-5 sobre faq" id="featured-3">
     <h2 class="pb-2 border-bottom">Contratos</h2>
     <div class="accordion" id="accordionExample">
-      <% @contract.contract_historic.all.order(open_date: :desc).each do |contract| %>
+      <%# @contract_historic.portion.all.order(open_date: :cres).each do |portion| #%>
         <div class="accordion-item">
-          <h2 class="accordion-header" id="heading<%= contract.id %>" style="display: flex; align-items: center; flex-direction: row-reverse;">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= contract.id %>" aria-expanded="true" aria-controls="collapse<%= contract.id %>">
-              Contrato <%= contract.open_date %>
+          <h2 class="accordion-header" id="heading<%= @contract_historic.id %>" style="display: flex; align-items: center; flex-direction: row-reverse;">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= @contract_historic.id %>" aria-expanded="true" aria-controls="collapse<%= @contract_historic.id %>">
+              Contrato <%= @contract_historic.open_date %>
             </button>
-            <a href="<%= contract.contract.contract_doc.url %>" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success" type="button" style="margin-right: 1%;"><i class="bi bi-download"></i></a>
+            <a href="<%= @contract_historic.contract.contract_doc.url %>" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success" type="button" style="margin-right: 1%;"><i class="bi bi-download"></i></a>
           </h2>
-          <div id="collapse<%= contract.id %>" class="accordion-collapse collapse" aria-labelledby="heading<%= contract.id %>" data-bs-parent="#accordionExample">
+          <div id="collapse<%= @contract_historic.id %>" class="accordion-collapse collapse" aria-labelledby="heading<%= @contract_historic.id %>" data-bs-parent="#accordionExample">
               <div class="accordion-item" style="max-height: 300px; overflow: auto;">
                 <table class="table table-dark table-striped-columns">
                   <thead>
@@ -23,16 +23,24 @@
                       <th scope="col">Valor</th>
                       <th scope="col">Status</th>
                       <th scope="col">Comprovante</th>
+                      <th scope="col">Inserir extrato</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <% contract.portion.all.each do |portion| %>
+                    <% @contract_historic.portion.all.each do |portion| %>
                       <tr>
                         <!--th scope="row">1</th-->
                         <td><%= portion.number%>ª</td>
                         <td>R$ <%= portion.value%></td>
                         <td><%= portion.status ? "Pago" : "-" %></td><!--Portion.find_by(id:4)[:proof].present?-->
-                        <td><button <%= portion[:proof].present? ? "" : "disabled" %> type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"  onclick='textModal("Contrato - <%= contract.open_date %> | Parcela - <%= portion.number%>/<%= contract.portion.all.count %> ","<%= portion.proof.url %>")'><i class="bi bi-eye-fill"></i></button> | <button <%= portion[:proof].present? ? "" : "disabled" %> type="button" class="btn btn-outline-success"><i class="bi bi-download"></i></button> </td>
+                        <td><button <%= portion[:proof].present? ? "" : "disabled" %> type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"  onclick='textModal("Contrato - <%= @contract_historic.open_date %> | Parcela - <%= portion.number%>/<%= @contract_historic.portion.all.count %> ","<%= portion.proof.url %>")'><i class="bi bi-eye-fill"></i></button> | <button <%= portion[:proof].present? ? "" : "disabled" %> type="button" class="btn btn-outline-success"><i class="bi bi-download"></i></button> </td>
+                        <td>
+                          <%= form_with(model: portion) do |form| %>
+                            <div class="field">
+                              <%= form.file_field :proof, :onChange=>"this.form.submit()" %>
+                            </div>
+                          <%end%>
+                        </td>
                       </tr>
                     <% end %>
                   </tbody>
@@ -41,7 +49,7 @@
             <!--% end %-->
           </div>
         </div>
-      <% end %>
+      <%# end #%>
     </div>
 
     <!-- Modal -->

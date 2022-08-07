@@ -16,12 +16,12 @@
           </tr>
         </thead>
         <tbody>
-          <% Income.all.order(reference_date: :desc).each do |income| %>
+          <% Income.all.order(reference_date: :desc).each_with_index do |income,index| %>
             <tr>
-              <th scope="row">1</th>
+              <th scope="row"><%=index%></th>
               <td><%= @meses[income.reference_date.month - 1] %></td>
               <td><%= income.reference_date.year %></td>
-              <td> <Button onclick='textModal("Rendimento <%= @meses[income.reference_date.month-1]%>/<%= income.reference_date.year %>","img_1.jpeg")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"> <i class="bi bi-eye-fill"></i> </button> </td>
+              <td> <Button onclick='textModal("Rendimento <%= @meses[income.reference_date.month-1]%>/<%= income.reference_date.year %>","<%= income.income_doc.url %>")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"> <i class="bi bi-eye-fill"></i> </button> </td>
             </tr>
           <% end %>
         </tbody>
@@ -41,7 +41,7 @@
 
           <div class="modal-body">
             <div class="carousel-item active" style="display: flex; align-items: center; justify-content: center;">
-              <%= image_tag("rendimento_exemplo", :alt => "", :class=> "d-inline-block align-text-top", 'aria-hidden' => "true", :preserveAspectRatio => "xMidYMid slice", :focusable => "false", :id => "img_income", :style => "height: -webkit-fill-available;") %>
+              <%= image_tag("rendimento_exemplo", :alt => "https://classic.exame.com/wp-content/uploads/2021/03/gato-1.jpg?quality=70&strip=info&w=1024", :class=> "d-inline-block align-text-top", 'aria-hidden' => "true", :preserveAspectRatio => "xMidYMid slice", :focusable => "false", :id => "img_income", :style => "height: -webkit-fill-available;") %>
             </div>
           </div>
 
@@ -58,6 +58,6 @@
 <script>
   function textModal(title, text) {
     document.getElementById("exampleModalScrollableTitle").innerText=title;
-    //document.getElementById("img_income").src=text;
+    document.getElementById("img_income").src=text;
   }
 </script>

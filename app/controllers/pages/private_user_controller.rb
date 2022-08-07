@@ -4,7 +4,7 @@ class Pages::PrivateUserController < ApplicationController
   end
 
   def contract
-    @contract = current_user.contracts.find_by(number:params[:id])
+    @contract = current_user.contract.find_by(number:params[:id])
     if @contract.nil?
       redirect_to user_home_path
     end
@@ -44,6 +44,7 @@ class Pages::PrivateUserController < ApplicationController
   end
 
   def admin_create
+    #byebug
     @user = User.new(admin_params)
     respond_to do |format|
       if @user.save
@@ -65,12 +66,21 @@ class Pages::PrivateUserController < ApplicationController
 
   def edit_user
     @user = ContractHistoric.find_by(id:params[:id]).contract.user
-    a=1
-    b=2
   end
 
   def admin_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
+  def manager_portion_user
+    #byebug
+    @contract_historic = ContractHistoric.find_by(id:params[:id])
+    a=1
+    b=2
+  end
+
+  def insert_extrato_user
+    #byebug
+    @portion = ContractHistoric.find_by(id:params[:id]).portion
+  end
 end

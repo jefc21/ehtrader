@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :portions
   resources :contract_historics
   resources :contracts
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions"}
   root to: 'pages#home'
 
   get 'user/home', to: "pages/private_user#index"
@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   get 'user/list', to: "pages/private_user#list_user"
   
   get 'user/edit/:id', to: "pages/private_user#edit_user"
+
+  #get 'user/extrato/:id', to: "pages/private_user#insert_extrato_user"
+  
+  get 'user/manager/:id', to: "pages/private_user#manager_portion_user"
 end
