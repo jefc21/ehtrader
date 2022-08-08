@@ -85,3 +85,4 @@ production:
   #username: ehtrader
   #assword: <%= ENV['EHTRADER_DATABASE_PASSWORD'] %>
   url: <%= ENV['DATABASE_URL'] %>
+  
