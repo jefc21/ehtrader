@@ -80,7 +80,9 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: ehtrader_production
-  username: ehtrader
-  password: <%= ENV['EHTRADER_DATABASE_PASSWORD'] %>
+  #<<: *default
+  #database: ehtrader_production
+  #username: ehtrader
+  #assword: <%= ENV['EHTRADER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  
