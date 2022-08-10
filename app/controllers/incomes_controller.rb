@@ -21,7 +21,6 @@ class IncomesController < ApplicationController
 
   # POST /incomes or /incomes.json
   def create
-    byebug
     @income = Income.new(income_params)
 
     respond_to do |format|
