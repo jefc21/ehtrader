@@ -9,10 +9,9 @@ CarrierWave.configure do |config|
     config.fog_directory = ENV["AWS_BUCKET"]                   # required
     config.fog_public    = false
     config.cache_dir     = "#{Rails.root}/tmp/uploads"         # To let CarrierWave work on Heroku
-    config.storage       = :fog
-  end
+    #config.storage       = :fog
 
-  # store files locally in test and development environments
+      # store files locally in test and development environments
   if Rails.env.test? || Rails.env.development?
     config.storage = :file
     config.enable_processing = false
@@ -20,3 +19,5 @@ CarrierWave.configure do |config|
   else
     config.storage = :fog
   end
+end
+
