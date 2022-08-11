@@ -1,16 +1,16 @@
 <section class="how-it-works-sec" id="sobre">
   <div class="container px-4 py-5 sobre" id="featured-3">
     <h2 class="pb-2 border-bottom">SOBRE</h2>
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify">
       <div class="feature col">
-        <h2>O que é trader?</h2>
-        <% @message1 = "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words." %>
+        <h2>O que é Trade Esportivo?</h2>
+        <% @message1 = "Trade Esportivo é a negociação de odds (probabilidade) que ocorre antes ou durante um evento esportivo. Esta oscilação de odds é semelhante à oscilação dos preços de uma ação em uma bolsa de valores, mas a lógica do trader esportivo gira em torno das probabilidades de algum evento ocorrer." %>
         <p><%= @message1 %></p>
-        <div class="mb-3">
+        <!--<div class="mb-3">
           <%= image_tag("sobre/img1.jpg", :alt => "", :width => "75%", :height => "75%") %>
-        </div>
+        </div>-->
         <!-- Button trigger modal -->
-        <button onclick='textModal("O que é trader?", "<%= @message1 %>")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+        <button onclick='textModal("O que é Trade Esportivo?", "<%= @message1 %>")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
           saber mais
         </button>
       </div>
@@ -18,9 +18,9 @@
         <h2>Como funciona?</h2>
         <% @message2 = "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words." %>
         <p><%= @message2 %></p>
-        <div class="mb-3">
-          <%= image_tag("sobre/img2.jpg", :alt => "", :width => "75%", :height => "75%") %>
-        </div>
+        <!--<div class="mb-3">
+         <%= image_tag("sobre/img2.jpg", :alt => "", :width => "75%", :height => "75%") %>
+        </div>-->
         <!-- Button trigger modal -->
         <button onclick='textModal("Como funciona?","<%= @message2 %>")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
           saber mais
@@ -28,11 +28,11 @@
       </div>
       <div class="feature col">
         <h2>Quem somos?</h2>
-        <% @message3 = "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words." %>
+        <% @message3 = "Somos a EH Trader Esportivo, uma empresa de operações no mercado de Trader Esportivo, onde trabalhamos com as maiores plataformas do mercado nesse segmento. Somos uma empresa que temos compromisso com nossos investidores, garantindo segurança com seu investimento." %>
         <p><%= @message3 %></p>
-        <div class="mb-3">
+        <!--<div class="mb-3">
           <%= image_tag("sobre/img3.jpg", :alt => "", :width => "75%", :height => "75%") %>
-        </div>
+        </div>-->
         <!-- Button trigger modal -->
         <button onclick='textModal("Quem somos?","<%= @message3 %>")' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
           saber mais
