@@ -5,18 +5,26 @@
   <div class="text-center">
   <h2 class="pb-2 border-bottom h3 mb-1 fw-normal" style="padding: 2rem">Criar Contrato</h2>
     <div calss="form-signin w-100 m-auto" style="max-width: 330px; padding: 15px; margin: auto; padding-top: 3rem;">
-
-        <%= form_for @contract, method: :post do |form1| %> 
-          <%= fields_for @user do |form| %>
+      <% byebug %>
+        <%= form_for @contract, method: :post do |form1| %>
+          <%if params["user_id"].present?%>
+            <%= hidden_field_tag "user_id", params["user_id"] %>
             <div class="form-floating">
-              <%= form.email_field :email, class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+              <input class="form-control" placeholder="name@example.com" type="text" name="value" value=<%=User.find_by(id:params["user_id"]).email%> disabled>
               <label for="floatingInput">Email</label>
             </div>
-            <div class="form-floating">
-              <%= form.password_field :password, class:"form-control", id:"floatingPassword", placeholder:"senha" %>
-              <label for="floatingPassword">Senha</label>
-            </div>
-          <% end %>
+          <%else%> 
+            <%= fields_for @user do |form| %>
+              <div class="form-floating">
+                <%= form.email_field :email, class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+                <label for="floatingInput">Email</label>
+              </div>
+              <div class="form-floating">
+                <%= form.password_field :password, class:"form-control", id:"floatingPassword", placeholder:"senha" %>
+                <label for="floatingPassword">Senha</label>
+              </div>
+            <% end %>
+          <%end%>
 
           <%= fields_for @contract_historic do |form| %>
             <div class="form-floating">

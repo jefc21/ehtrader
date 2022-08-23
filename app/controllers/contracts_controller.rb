@@ -21,9 +21,13 @@ class ContractsController < ApplicationController
 
   # POST /contracts or /contracts.json
   def create
-    @user = User.new(email:params[:email], password: params[:password], password_confirmation: params[:password])
+    if params["user_id"].present?
+      @user = User.find_by(id:params["user_id"])
+    else
+      @user = User.new(email:params[:email], password: params[:password], password_confirmation: params[:password])
+    end
     respond_to do |format|
-      if @user.save
+      if (params["user_id"].present? || @user.save)
         @investor = @user.build_user_role(role_id: Role.find_by(name:"Investor").id)
         if @investor.save
           @contract = @user.contract.build(contract_params)
