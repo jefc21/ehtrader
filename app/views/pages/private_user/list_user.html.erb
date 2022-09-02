@@ -49,7 +49,8 @@
                     <a class="dropdown-item"  href="/user/manager/<%=contracthistoric.id%>"><button id="<%= @num=index %>" name="<%= contracthistoric.id %>" type="button" class="btn btn-outline-success" >Inserir extrato</button></a>
                     <a class="dropdown-item"  href="/user/edit/<%=contracthistoric.id%>"><button type="button" class="btn btn-outline-success" >Editar dados</button></a>
                     <a class="dropdown-item"  href="#"><button type="button" class="btn btn-outline-success" >Atualizar contrato</button></a>
-                    <a class="dropdown-item"  href="/user/contract_new?user_id=<%=contracthistoric.id%>"><button type="button" class="btn btn-outline-success" >Criar contrato</button></a>
+                    <a class="dropdown-item"  href="/user/contract_new?user_id=<%=contracthistoric.contract.user.id%>"><button type="button" class="btn btn-outline-success" >Criar contrato</button></a>
+                    <a class="dropdown-item"  href="/contracts/<%=contracthistoric.contract.id%>", data-method="delete", data-confirm="Apagar contrato?"><button type="button" class="btn btn-outline-success" >delete</button></a>
                     
                   </div>
                 </div>

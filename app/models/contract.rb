@@ -1,6 +1,6 @@
 class Contract < ApplicationRecord
   belongs_to :user
-  has_many :contract_historic
+  has_many :contract_historic, dependent: :destroy
 
   mount_uploader :contract_doc, ContractDocUploader
 

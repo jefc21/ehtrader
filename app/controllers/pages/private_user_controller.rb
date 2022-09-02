@@ -44,7 +44,6 @@ class Pages::PrivateUserController < ApplicationController
   end
 
   def admin_create
-    #byebug
     @user = User.new(admin_params)
     respond_to do |format|
       if @user.save
@@ -73,14 +72,10 @@ class Pages::PrivateUserController < ApplicationController
   end
 
   def manager_portion_user
-    #byebug
     @contract_historic = ContractHistoric.find_by(id:params[:id])
-    a=1
-    b=2
   end
 
   def insert_extrato_user
-    #byebug
     @portion = ContractHistoric.find_by(id:params[:id]).portion
   end
 end

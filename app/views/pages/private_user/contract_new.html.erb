@@ -4,7 +4,10 @@
 <section class="signin" style="margin-bottom: -5rem">
   <div class="text-center">
   <h2 class="pb-2 border-bottom h3 mb-1 fw-normal" style="padding: 2rem">Criar Contrato</h2>
+
     <div calss="form-signin w-100 m-auto" style="max-width: 330px; padding: 15px; margin: auto; padding-top: 3rem;">  
+
+
         <%= form_for @contract, method: :post do |form1| %>
           <%if params["user_id"].present?%>
             <%= hidden_field_tag "user_id", params["user_id"] %>
