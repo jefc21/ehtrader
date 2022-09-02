@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :authentication_keys => {email: true, login: false}
 
-  has_many :contract
-  has_one :user_role
+  has_many :contract, dependent: :destroy
+  has_one :user_role, dependent: :destroy
 
   
 end

@@ -21,15 +21,22 @@ class ContractsController < ApplicationController
 
   # POST /contracts or /contracts.json
   def create
-    if params["user_id"].present?
-      @user = User.find_by(id:params["user_id"])
-    else
-      @user = User.new(email:params[:email], password: params[:password], password_confirmation: params[:password])
-    end
     respond_to do |format|
-      if (params["user_id"].present? || @user.save)
-        @investor = @user.build_user_role(role_id: Role.find_by(name:"Investor").id)
-        if @investor.save
+      unless params["user_id"].present?
+        @user = User.new(email:params[:email], password: params[:password], password_confirmation: params[:password])
+        @user.save
+        if @user.user_role.nil?
+          @investor = @user.build_user_role(role_id: Role.find_by(name:"Investor").id)
+          unless @investor.save
+            respond_create(format)
+          end
+        end
+      else
+        @user = User.find_by(id:params["user_id"])
+      end
+      unless ((@user.id.nil?)||(@user.user_role.nil?))
+        #@investor = @user.build_user_role(role_id: Role.find_by(name:"Investor").id)
+        #if @investor.save
           @contract = @user.contract.build(contract_params)
           if @contract.save
             @contract_historic = @contract.contract_historic.build(value:params[:value], num_portion:params[:num_portion], status:true, open_date:params[:open_date])
@@ -38,19 +45,25 @@ class ContractsController < ApplicationController
                 @portions=@contract_historic.portion.build(number:i, value:(@contract_historic.value/10), status:false, proof:nil)
                 if i == @contract_historic.num_portion
                   if @portions.save
-                   format.html { redirect_to user_contract_new_path, notice: "Contract was successfully created." }
+                   format.html { redirect_to user_list_path, notice: "Contract was successfully created." }
                     #format.json { render :show, status: :created, location: @contract }
                   end
                 elsif !@portions.save
+                  respond_create(format)
                   break
                 end
               end
+            else
+              respond_create(format)
             end
+          else
+            respond_create(format)
           end
-        end
+        #end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @contract.errors, status: :unprocessable_entity }
+        respond_create(format)
+        #format.html { render :new, status: :unprocessable_entity }
+        #format.json { render json: @contract.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,11 +83,15 @@ class ContractsController < ApplicationController
 
   # DELETE /contracts/1 or /contracts/1.json
   def destroy
-    @contract.destroy
+    if @contract.user.contract.size > 1
+      @contract.destroy
+    else
+      @contract.user.destroy
+    end
 
     respond_to do |format|
-      format.html { redirect_to contracts_url, notice: "Contract was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to user_list_path, notice: "Contract was successfully destroyed." }
+      #format.json { head :no_content }
     end
   end
 
@@ -87,5 +104,15 @@ class ContractsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def contract_params
       params.require(:contract).permit(:contract_doc, :number, :user_id)
+    end
+
+    def respond_create(format)
+      if params["user_id"].present?
+        @contract.destroy()
+      else
+        @user.destroy()
+      end
+      format.html { redirect_to user_list_path, notice: "contract creation failed." }
+      #format.json { render json: @contract.errors, status: :unprocessable_entity }
     end
 end
